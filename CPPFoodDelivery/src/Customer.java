@@ -1,4 +1,4 @@
-public class Customer implements User {
+public class Customer implements User, Notification {
     private String name;
     private String address;
     private String county;
@@ -24,5 +24,10 @@ public class Customer implements User {
     }
     public String getDietaryRestriction() {
         return dietaryRestriction;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println("Notification for " + name + ": " + message);
     }
 }

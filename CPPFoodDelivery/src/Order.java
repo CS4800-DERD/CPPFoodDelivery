@@ -19,6 +19,7 @@ public class Order {
         this.creationTime = builder.creationTime;
         this.pickupTime = builder.pickupTime;
         this.deliveryTime = builder.deliveryTime;
+        notifyCustomer("Order Placed at " + creationTime);
     }
 
     public static class Builder {
@@ -63,5 +64,17 @@ public class Order {
         public Order build() {
             return new Order(this);
         }
+    }
+    private void notifyCustomer(String message) {
+        if (customer != null) {
+            customer.update(message);
+        }
+    }
+    public void notifyPickupTime() {
+        notifyCustomer("Order Picked Up at " + pickupTime);
+    }
+
+    public void notifyDeliveryTime() {
+        notifyCustomer("Order Delivered at " + deliveryTime);
     }
 }
