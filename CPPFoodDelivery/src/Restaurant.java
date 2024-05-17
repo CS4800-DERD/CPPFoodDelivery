@@ -1,4 +1,5 @@
 import java.util.Map;
+import java.time.LocalTime;
 
 public class Restaurant implements User {
     private String name;
@@ -6,6 +7,10 @@ public class Restaurant implements User {
     private String county;
     private String operatingHours;
     private String cuisine;
+
+    private LocalTime openingTime;
+
+    private LocalTime closingTime;
     private Map<String, Double> menu;
     //key(string) is meal name and value(Double) is the price
     private Map<String, Map<String, Double>> meals;
@@ -38,11 +43,25 @@ public class Restaurant implements User {
     public String getCuisine() {
         return cuisine;
     }
+    public LocalTime getOpeningTime() {
+        return openingTime;
+    }
+    public LocalTime getClosingTime() {
+        return closingTime;
+    }
     public Map<String, Double> getMenu() {
         return menu;
     }
     public Map<String, Map<String, Double>> getMeals() {
         return meals;
     }
+    public void setOpeningTime(LocalTime openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public void setClosingTime(LocalTime closingTime) {
+        this.closingTime = closingTime;
+    }
+
 }
 
