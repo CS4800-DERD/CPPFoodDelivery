@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItem {
+public class MenuItem implements Meal{
     private String name;
     private double fats;
     private double carbs;
@@ -14,6 +14,29 @@ public class MenuItem {
         this.carbs = builder.carbs;
         this.protein = builder.protein;
         this.optionalToppings = builder.optionalToppings;
+    }
+
+    public String getDescription(){
+        return name + " " + getFats() + " " + getCarbs() + " " + getProtein() + " " + getOptionalToppings();
+    }
+
+    @Override
+    public double getFats() {
+        return fats;
+    }
+
+    @Override
+    public double getCarbs() {
+        return carbs;
+    }
+
+    @Override
+    public double getProtein() {
+        return protein;
+    }
+    @Override
+    public List<String> getOptionalToppings(){
+        return optionalToppings;
     }
 
     public static class Builder {
