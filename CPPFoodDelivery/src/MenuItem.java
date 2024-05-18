@@ -6,7 +6,7 @@ public class MenuItem implements Meal{
     private double fats;
     private double carbs;
     private double protein;
-    private List<String> optionalToppings;
+    private List<ToppingType> optionalToppings;
 
     private MenuItem(Builder builder) {
         this.name = builder.name;
@@ -35,7 +35,7 @@ public class MenuItem implements Meal{
         return protein;
     }
     @Override
-    public List<String> getOptionalToppings(){
+    public List<ToppingType> getOptionalToppings(){
         return optionalToppings;
     }
 
@@ -44,7 +44,7 @@ public class MenuItem implements Meal{
         private double fats;
         private double carbs;
         private double protein;
-        private List<String> optionalToppings = new ArrayList<>();
+        private List<ToppingType> optionalToppings = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
@@ -65,8 +65,12 @@ public class MenuItem implements Meal{
             return this;
         }
 
-        public Builder addTopping(String topping) {
-            this.optionalToppings.add(topping);
+        public Builder addTopping(ToppingType topping) {
+            optionalToppings.add(topping);
+            this.fats += topping.getFats();
+            this.carbs += topping.getCarbs();
+            this.protein += topping.getProtein();
+
             return this;
         }
 

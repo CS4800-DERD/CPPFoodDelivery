@@ -4,5 +4,5 @@ public interface Meal {
     double getFats();
     double getCarbs();
     double getProtein();
-    List<String> getOptionalToppings();
+    List<ToppingType> getOptionalToppings();
 }
