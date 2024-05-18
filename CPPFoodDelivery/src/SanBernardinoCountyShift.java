@@ -2,7 +2,7 @@ import java.time.LocalTime;
 
 public class SanBernardinoCountyShift implements TimeShift{
     private static final LocalTime START_SHIFT = LocalTime.of(0,0);
-    private static final LocalTime END_SHIFT = LocalTime.of(8,0);
+    private static final LocalTime END_SHIFT = LocalTime.of(7,59);
 
     @Override
     public boolean isAvailable(LocalTime time) {
@@ -11,11 +11,11 @@ public class SanBernardinoCountyShift implements TimeShift{
 
     @Override
     public String getStartTime() {
-        return "12 AM";
+        return "00:00";
     }
 
     @Override
     public String getEndTime() {
-        return "8 AM";
+        return "07:59";
     }
 }

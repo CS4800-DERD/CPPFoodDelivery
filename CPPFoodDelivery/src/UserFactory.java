@@ -1,6 +1,6 @@
 import java.util.Map;
 public class UserFactory {
-    public static User createUser(String type, String name, String address, String county, String dietaryRestriction, String operatingHours, String cuisine, Map<String, Double> menu, Map<String, Map<String, Double>> meals) {
+    public static User createUser(String type, String name, String address, String county, String dietaryRestriction, TimeShift operatingHours, String cuisine, Map<String, Double> menu, Map<String, Map<String, Double>> meals) {
         switch (type) {
             case "Customer":
                 return new Customer(name, address, county, dietaryRestriction);

@@ -1,8 +1,8 @@
 import java.time.LocalTime;
 
-public class OrangeCountyShift implements TimeShift{
-    private static final LocalTime START_SHIFT = LocalTime.of(16,0);
-    private static final LocalTime END_SHIFT = LocalTime.of(0,0);
+public class OrangeCountyShift implements TimeShift {
+    private static final LocalTime START_SHIFT = LocalTime.of(16, 0);
+    private static final LocalTime END_SHIFT = LocalTime.of(23, 59);
 
     @Override
     public boolean isAvailable(LocalTime time) {
@@ -11,11 +11,11 @@ public class OrangeCountyShift implements TimeShift{
 
     @Override
     public String getStartTime() {
-        return "4 PM";
+        return "16:00";
     }
 
     @Override
     public String getEndTime() {
-        return "12 AM";
+        return "23:59";
     }
 }

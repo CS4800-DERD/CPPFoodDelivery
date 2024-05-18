@@ -1,4 +1,4 @@
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,18 +7,16 @@ public class Order {
     private Customer customer;
     private List<MenuItem> items;
     private Driver driver;
-    private LocalDateTime creationTime;
-    private LocalDateTime pickupTime;
-    private LocalDateTime deliveryTime;
+    private LocalTime creationTime;
+    private LocalTime pickupTime;
+    private LocalTime deliveryTime;
 
-    private Order(Builder builder) {
+    private Order(Builder builder, LocalTime currentTime) {
         this.restaurant = builder.restaurant;
         this.customer = builder.customer;
         this.items = builder.items;
         this.driver = builder.driver;
-        this.creationTime = builder.creationTime;
-        this.pickupTime = builder.pickupTime;
-        this.deliveryTime = builder.deliveryTime;
+        this.creationTime = currentTime;
         notifyCustomer("Order Placed at " + creationTime);
     }
 
@@ -27,9 +25,6 @@ public class Order {
         private Customer customer;
         private List<MenuItem> items = new ArrayList<>();
         private Driver driver;
-        private LocalDateTime creationTime;
-        private LocalDateTime pickupTime;
-        private LocalDateTime deliveryTime;
 
         public Builder(Restaurant restaurant, Customer customer) {
             this.restaurant = restaurant;
@@ -46,35 +41,30 @@ public class Order {
             return this;
         }
 
-        public Builder creationTime(LocalDateTime creationTime) {
-            this.creationTime = creationTime;
-            return this;
-        }
-
-        public Builder pickupTime(LocalDateTime pickupTime) {
-            this.pickupTime = pickupTime;
-            return this;
-        }
-
-        public Builder deliveryTime(LocalDateTime deliveryTime) {
-            this.deliveryTime = deliveryTime;
-            return this;
-        }
-
-        public Order build() {
-            return new Order(this);
+        public Order build(LocalTime currentTime) {
+            if (!restaurant.isAvailable(currentTime)) {
+                throw new IllegalArgumentException("Order can't be place, Restaurant not open.");
+            }
+            if (!driver.isAvailable(currentTime)) {
+                throw new IllegalArgumentException("Order can't be place, Driver not available.");
+            }
+            return new Order(this, currentTime);
         }
     }
+
     private void notifyCustomer(String message) {
         if (customer != null) {
             customer.update(message);
         }
     }
-    public void notifyPickupTime() {
+
+    public void notifyPickupTime(LocalTime pickupTime) {
+        this.pickupTime = pickupTime;
         notifyCustomer("Order Picked Up at " + pickupTime);
     }
 
-    public void notifyDeliveryTime() {
+    public void notifyDeliveryTime(LocalTime deliveryTime) {
+        this.deliveryTime = deliveryTime;
         notifyCustomer("Order Delivered at " + deliveryTime);
     }
 }
