@@ -199,7 +199,7 @@ public class Main {
             System.out.println(item + " - $" + restaurant2.getMenu().get(item));
         }
 
-        Order order6 = new Order.Builder(restaurant2, customer2)
+        Order order6 = new Order.Builder(restaurant2, customer6)
                 .addItem(new MenuItem.Builder("Sushi").build())
                 .addItem(new MenuItem.Builder("Ramen").build())
                 .driver(driver2)
@@ -215,7 +215,7 @@ public class Main {
             System.out.println(item + " - $" + restaurant2.getMenu().get(item));
         }
 
-        Order order7 = new Order.Builder(restaurant2, customer3)
+        Order order7 = new Order.Builder(restaurant2, customer7)
                 .addItem(new MenuItem.Builder("Taco").build())
                 .addItem(new MenuItem.Builder("Burrito").build())
                 .driver(driver2)
@@ -236,7 +236,7 @@ public class Main {
                 .driver(driver3)
                 .build(LocalTime.of(05, 0));
 
-        System.out.println("Order placed by " + customer4.getName() + " for Salad and Sandwich.");
+        System.out.println("Order placed by " + customer8.getName() + " for Salad and Sandwich.");
 
         // Customer 9 ordering from Restaurant 2
         List<String> restrictedMenu9 = customer9.applyDietaryRestrictions(new ArrayList<>(restaurant2.getMenu().keySet()));
@@ -245,7 +245,7 @@ public class Main {
             System.out.println(item + " - $" + restaurant2.getMenu().get(item));
         }
 
-        Order order9 = new Order.Builder(restaurant2, customer8)
+        Order order9 = new Order.Builder(restaurant2, customer9)
                 .addItem(new MenuItem.Builder("Taco").build())
                 .addItem(new MenuItem.Builder("Burrito").build())
                 .driver(driver2)
@@ -261,13 +261,13 @@ public class Main {
             System.out.println(item + " - $" + restaurant.getMenu().get(item));
         }
 
-        Order order10 = new Order.Builder(restaurant, customer8)
+        Order order10 = new Order.Builder(restaurant, customer10)
                 .addItem(new MenuItem.Builder("Burger").build())
                 .addItem(new MenuItem.Builder("Pizza").build())
                 .driver(driver1)
                 .build(LocalTime.of(11, 45));
 
-        System.out.println("Order placed by " + customer4.getName() + " for Burger and Pizza.");
+        System.out.println("Order placed by " + customer10.getName() + " for Burger and Pizza.");
 
 
         System.out.println("\n- Driver Delivery Process -");
@@ -299,6 +299,48 @@ public class Main {
 
         order4.notifyDeliveryTime(LocalTime.of(15, 15));
         System.out.println("Order delivered by " + driver1.getName() + " at 15:15.");
+
+// Order 5 pickup and delivery
+        order5.notifyPickupTime(LocalTime.of(8, 05));
+        System.out.println("Order picked up by " + driver1.getName() + " at 08:05.");
+
+        order5.notifyDeliveryTime(LocalTime.of(8, 25));
+        System.out.println("Order delivered by " + driver1.getName() + " at 08:25.");
+
+// Order 6 pickup and delivery
+        order6.notifyPickupTime(LocalTime.of(16, 20));
+        System.out.println("Order picked up by " + driver2.getName() + " at 16:30.");
+
+        order6.notifyDeliveryTime(LocalTime.of(16, 45));
+        System.out.println("Order delivered by " + driver2.getName() + " at 16:45.");
+
+// Order 7 pickup and delivery
+        order7.notifyPickupTime(LocalTime.of(23, 30));
+        System.out.println("Order picked up by " + driver2.getName() + " at 23:40.");
+
+        order7.notifyDeliveryTime(LocalTime.of(23, 45));
+        System.out.println("Order delivered by " + driver2.getName() + " at 23:55.");
+
+// Order 8 pickup and delivery
+        order8.notifyPickupTime(LocalTime.of(5, 10));
+        System.out.println("Order picked up by " + driver3.getName() + " at 05:10.");
+
+        order8.notifyDeliveryTime(LocalTime.of(5, 15));
+        System.out.println("Order delivered by " + driver3.getName() + " at 05:15.");
+
+// Order 9 pickup and delivery
+        order9.notifyPickupTime(LocalTime.of(22, 40));
+        System.out.println("Order picked up by " + driver2.getName() + " at 22:40.");
+
+        order9.notifyDeliveryTime(LocalTime.of(22, 55));
+        System.out.println("Order delivered by " + driver2.getName() + " at 22:55.");
+
+// Order 10 pickup and delivery
+        order10.notifyPickupTime(LocalTime.of(11, 45));
+        System.out.println("Order picked up by " + driver1.getName() + " at 11:45.");
+
+        order10.notifyDeliveryTime(LocalTime.of(12, 00));
+        System.out.println("Order delivered by " + driver1.getName() + " at 12:00.");
 
     }
 }
