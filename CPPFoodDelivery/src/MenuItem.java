@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuItem implements Meal{
+public class MenuItem implements Meal {
     private String name;
     private double fats;
     private double carbs;
     private double protein;
+    private List<String> ingredients;
     private List<ToppingType> optionalToppings;
 
     private MenuItem(Builder builder) {
@@ -13,6 +14,7 @@ public class MenuItem implements Meal{
         this.fats = builder.fats;
         this.carbs = builder.carbs;
         this.protein = builder.protein;
+        this.ingredients = builder.ingredients;
         this.optionalToppings = builder.optionalToppings;
     }
 
@@ -39,12 +41,17 @@ public class MenuItem implements Meal{
         return optionalToppings;
     }
 
+    public List<String> applyDietaryRestrictions(DietaryRestriction dietaryRestriction) {
+        return dietaryRestriction.applyDietaryRestrictions(ingredients);
+    }
+
     public static class Builder {
         private String name;
         private double fats;
         private double carbs;
         private double protein;
         private List<ToppingType> optionalToppings = new ArrayList<>();
+        private List<String> ingredients = new ArrayList<>();
 
         public Builder(String name) {
             this.name = name;
@@ -62,6 +69,11 @@ public class MenuItem implements Meal{
 
         public Builder protein(double protein) {
             this.protein = protein;
+            return this;
+        }
+
+        public Builder addIngredient(String ingredient) {
+            ingredients.add(ingredient);
             return this;
         }
 

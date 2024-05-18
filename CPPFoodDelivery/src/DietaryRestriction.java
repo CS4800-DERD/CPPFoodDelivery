@@ -1,5 +1,5 @@
 import java.util.List;
 
-interface DietaryRestriction {
+public interface DietaryRestriction {
     List<String> applyDietaryRestrictions(List<String> foods);
 }

@@ -25,10 +25,12 @@ import java.util.*;
              case "Nut Allergy":
                  restrictionStrategy = new NutAllergyDiet();
                  break;
+             case "None":
+                 restrictionStrategy = new NoRestriction(); // Or handle "None" differently based on your logic
+                 break;
              default:
                  throw new IllegalArgumentException("Invalid dietary restriction: " + dietaryRestriction);
          }
-
      }
 
 
